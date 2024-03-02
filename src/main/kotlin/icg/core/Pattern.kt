@@ -1,3 +1,5 @@
+package icg.core
+
 import java.awt.Point
 
 /**

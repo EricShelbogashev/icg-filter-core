@@ -1,3 +1,5 @@
+package icg.core
+
 import java.awt.Point
 import java.awt.image.BufferedImage
 import java.util.*
@@ -15,21 +17,22 @@ import java.util.*
  */
 class MatrixView(
     private val image: BufferedImage,
-    private val pattern: Pattern,
-    private val pivot: Point,
+    val pattern: Pattern,
+    internal val pivot: Point,
 ) {
-    val rowRange = IntRange(pattern.start.x, pattern.end.x)
-    val columnRange = IntRange(pattern.start.y, pattern.end.y)
-
     /**
      * Возвращает RGB значение пикселя в заданных координатах.
      *
      * @param x Координата X относительно начальной точки подматрицы.
      * @param y Координата Y относительно начальной точки подматрицы.
      * @return RGB значение пикселя.
+     */
+    operator fun get(x: Int, y: Int): Int = orElseDefault(x, y, 0)
+
+    /**
      * @throws IndexOutOfBoundsException если указанные координаты выходят за границы подматрицы.
      */
-    operator fun get(x: Int, y: Int): Int = safeAccess(x, y).orElseThrow {
+    fun orElseThrow(x: Int, y: Int): Int = safeAccess(x, y).orElseThrow {
         IndexOutOfBoundsException(
             "absolute x or y is out of the image bounds: x=$x, y=$y, width=${image.width}, height=${image.height}, pivot=(${pivot.x},${pivot.y})"
         )
@@ -44,7 +47,7 @@ class MatrixView(
      * @param defaultVal Значение по умолчанию.
      * @return RGB значение пикселя или значение по умолчанию.
      */
-    fun orElseDefault(x: Int, y: Int, defaultVal: Int): Int {
+    private fun orElseDefault(x: Int, y: Int, defaultVal: Int): Int {
         return safeAccess(x, y).orElse(defaultVal)
     }
 

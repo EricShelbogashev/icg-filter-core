@@ -1,3 +1,4 @@
+import icg.core.MatrixViewFactory
 import java.awt.Color
 import kotlin.test.Test
 import kotlin.test.assertEquals

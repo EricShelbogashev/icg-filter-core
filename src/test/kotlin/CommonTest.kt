@@ -1,3 +1,4 @@
+import icg.core.Pattern
 import java.awt.Color
 import java.awt.Point
 import java.awt.image.BufferedImage
@@ -17,7 +18,7 @@ abstract class CommonTest {
                 image.setRGB(w, h, generator.invoke())
             }
         }
-        return image;
+        return image
     }
 
     protected fun toString(color: Color): String {

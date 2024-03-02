@@ -1,3 +1,6 @@
+import icg.core.ICGFilter
+import icg.core.ImageProcessor
+import icg.core.MatrixView
 import org.junit.jupiter.api.Test
 import java.awt.Color
 import kotlin.test.assertEquals
